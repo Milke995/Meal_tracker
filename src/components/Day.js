@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meal } from '../Meal';
+import { Meal } from './Meal';
 
 export const Day = (props) => {
   const { datestring, meals } = props;
@@ -71,7 +71,14 @@ export const Day = (props) => {
                   paddingLeft: '40px',
                   paddingRight: '40px',
                 }}>
-                <Meal meal={meal.title} ingredients={meal.ingredients} NoC={meal.calories} mealid={meal.mealid} />
+                <Meal
+                  meal={meal.title}
+                  ingredients={meal.ingredients}
+                  NoC={meal.calories}
+                  mealid={meal.mealid}
+                  date={datestring}
+                  setMeals={props.setMeals}
+                />
               </div>
             );
           })}

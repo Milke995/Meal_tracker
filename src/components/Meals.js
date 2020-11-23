@@ -1,14 +1,15 @@
 import React from 'react';
-import { Day } from './components/Day';
+import { Day } from './Day';
 
 export const Meals = (props) => {
-  // const [AllDates, setAllDates] = React.useState([]);
   let mappedMeals;
   let mappedByDate;
   let mappedByCalories;
   const meals = props.meals;
   const dateFilter = props.dateFilter;
+  const setMeals = props.setMeals;
   const caloriesFilter = props.caloriesFilter;
+
   meals.sort((a, b) => (a.date < b.date ? 1 : -1));
   mappedMeals = meals.reduce((a, { date, title, ingredients, calories, id: mealid }) => {
     const foundDate = a.find(({ id }) => id === date);
@@ -31,7 +32,7 @@ export const Meals = (props) => {
       return (
         <div>
           {mappedByCalories.map((date) => {
-            return <Day key={date.id} datestring={date.id} meals={date.obroci} total={date.sum} />;
+            return <Day key={date.id} datestring={date.id} meals={date.obroci} total={date.sum} setMeals={setMeals} />;
           })}
         </div>
       );
@@ -40,23 +41,26 @@ export const Meals = (props) => {
 
   if (dateFilter != '0') {
     mappedByDate = mappedMeals.find((day) => day.id == dateFilter);
-    console.log('mbd', mappedByDate);
-    console.log('dateFilter je ', dateFilter);
     if (!mappedByDate) {
       return <div style={{ textAlign: 'center' }}>There are no meals for that day :)</div>;
     } else {
       return (
-        <Day key={mappedByDate.id} datestring={mappedByDate.id} meals={mappedByDate.obroci} total={mappedByDate.sum} />
+        <Day
+          key={mappedByDate.id}
+          datestring={mappedByDate.id}
+          meals={mappedByDate.obroci}
+          total={mappedByDate.sum}
+          setMeals={setMeals}
+        />
       );
     }
   } else {
     mappedByDate = mappedMeals;
-    console.log('mbd', mappedByDate);
 
     return (
       <div>
         {mappedByDate.map((date) => {
-          return <Day key={date.id} datestring={date.id} meals={date.obroci} total={date.sum} />;
+          return <Day key={date.id} datestring={date.id} meals={date.obroci} total={date.sum} setMeals={setMeals} />;
         })}
       </div>
     );

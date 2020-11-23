@@ -3,7 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
-import fst from './Firebase';
+import fst from '../../Firebase';
 
 const HoverText = styled.div`
   :hover {

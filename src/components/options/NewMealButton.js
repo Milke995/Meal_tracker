@@ -8,9 +8,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { NewMeal } from './NewMeal';
+import { NewMeal } from '../NewMeal';
 
-export const NewMealButton = () => {
+export const NewMealButton = (props) => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -39,7 +39,7 @@ export const NewMealButton = () => {
         <DialogTitle id="form-dialog-title">Add a meal</DialogTitle>
         <DialogContent>
           <DialogContentText>Enter following informations regarding your meal:</DialogContentText>
-          <NewMeal closeHandler={handleClose} />
+          <NewMeal closeHandler={handleClose} setMeals={props.setMeals} meals={props.meals} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

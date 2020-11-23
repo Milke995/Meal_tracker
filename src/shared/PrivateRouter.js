@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { HomePage } from './HomePage';
-import { Profile } from './Profile';
+import { HomePage } from '../pages/HomePage/HomePage';
+import { ProfilePage } from '../pages/ProfilePage';
 
 export const PrivateRouter = () => {
   return (
@@ -10,7 +10,7 @@ export const PrivateRouter = () => {
         <div>
           <Switch>
             <Route path="/profile">
-              <Profile />
+              <ProfilePage />
             </Route>
             <Route path="/home">
               <HomePage />

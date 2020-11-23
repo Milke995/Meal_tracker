@@ -1,7 +1,7 @@
 import React from 'react';
 import { Kalendar } from './Kalendar';
 import { BrojKalorija } from './BrojKalorija';
-import { NewMealButton } from './components/NewMealButton';
+import { NewMealButton } from './NewMealButton';
 
 export const Opcije = (props) => {
   const styles = {
@@ -29,7 +29,7 @@ export const Opcije = (props) => {
         setCaloriesFilter={props.setCaloriesFilter}
       />
       <BrojKalorija setCaloriesFilter={props.setCaloriesFilter} setdatefilter={props.setdatefilter} />
-      <NewMealButton />
+      <NewMealButton setMeals={props.setMeals} meals={props.meals} />
     </div>
   );
 };

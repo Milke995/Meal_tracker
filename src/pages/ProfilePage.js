@@ -4,8 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
-import { UploadAvatarButton } from './UploadAvatarButton';
-import fst from './Firebase';
+import { UploadAvatarButton } from '../components/UploadAvatarButton';
+import fst from '../Firebase';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +23,7 @@ const validationSchema = yup.object({
   LastName: yup.string().min(1, 'Your Last Name cannot be empty').required('Your Last Name is required'),
 });
 
-export const Profile = () => {
+export const ProfilePage = () => {
   const classes = useStyles();
   const formik = useFormik({
     initialValues: {

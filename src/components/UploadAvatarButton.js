@@ -11,7 +11,7 @@ import * as yup from 'yup';
 import React from 'react';
 import { useFormik } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
-import fst from './Firebase';
+import fst from '../Firebase';
 
 const useStyles = makeStyles((theme) => ({
   root: {

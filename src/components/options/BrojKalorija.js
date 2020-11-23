@@ -27,7 +27,7 @@ const styles2 = {
 export const BrojKalorija = (props) => {
   const formik = useFormik({
     initialValues: {
-      calories: '',
+      calories: '1200',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {

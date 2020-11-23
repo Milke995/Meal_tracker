@@ -1,60 +1,39 @@
-import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
+import { TextField } from '@material-ui/core';
+import React from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { Button } from '@material-ui/core';
-import { createMeal } from '../api/createMeal';
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  //KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import 'date-fns';
+import { updateMeal } from '../api/updateMeal';
 import { getMeals } from '../api/getMeals';
 import fst from '../Firebase';
 
 const validationSchema = yup.object({
   title: yup.string().required('Title is required'),
   ingredients: yup.string().required('Ingredients are required'),
+  calories: yup.number().min(1, "can't be less than 1"),
 });
 
-export const NewMeal = (props) => {
+export const EdittingMeal = (props) => {
   const formik = useFormik({
     initialValues: {
-      title: '',
-      ingredients: '',
-      calories: 0,
-      date: new Date().toISOString().slice(0, 10),
+      title: props.meal,
+      ingredients: props.ingredients,
+      calories: props.NoC,
+      date: props.date,
+      id: props.mealid,
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      await createMeal(values);
+      await updateMeal(values);
       const updatedMeals = await getMeals(fst.auth().currentUser.uid);
       props.setMeals(updatedMeals);
       props.closeHandler();
     },
   });
 
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 10));
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date.toISOString().slice(0, 10));
-    formik.values.date = date.toISOString().slice(0, 10);
-  };
-
   return (
     <form onSubmit={formik.handleSubmit} noValidate autoComplete="off">
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'start',
-          textAlign: 'center',
-          margin: '20px',
-        }}>
-        {' '}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around' }}>
         <div style={{ margin: '15px' }}>
           <TextField
             required
@@ -93,31 +72,15 @@ export const NewMeal = (props) => {
             value={formik.values.calories}
             variant="outlined"
             onChange={formik.handleChange}
+            error={formik.touched.calories && Boolean(formik.errors.calories)}
+            helperText={formik.touched.calories && formik.errors.calories}
           />
         </div>
-        <div>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container justify="center">
-              <KeyboardDatePicker
-                disableToolbar
-                variant="inline"
-                format="MM/dd/yyyy"
-                margin="normal"
-                id="date-picker-inline"
-                name="date"
-                //label="Date picker inline"
-                value={selectedDate}
-                onChange={handleDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              />
-            </Grid>
-          </MuiPickersUtilsProvider>
+        <div style={{ marginTop: '20px' }}>
+          <Button color="secondary" variant="contained" type="submit">
+            Save changes
+          </Button>
         </div>
-        <Button color="secondary" variant="contained" type="submit">
-          Add a meal
-        </Button>
       </div>
     </form>
   );
