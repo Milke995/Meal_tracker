@@ -33,7 +33,6 @@ export const Meal = (props) => {
     setOpen(false);
   };
   const handleOpenSecond = () => {
-    console.log('trying to open 2');
     setOpenSecond(true);
   };
 

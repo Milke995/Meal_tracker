@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
-import fst from '../Firebase';
+import fst, { db } from '../Firebase';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +47,7 @@ export const RegisterPage = () => {
         photoURL:
           'https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg',
       });
+      db.collection('users').add({ userID: fst.auth().currentUser.uid, role: 'user' });
     } catch (error) {
       alert(error);
     }
