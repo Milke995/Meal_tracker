@@ -52,7 +52,10 @@ export const Kalendar = (props) => {
             style={{ width: '250px', marginLeft: '0px' }}
             color="secondary"
             variant="contained"
-            onClick={() => props.filterDate(selectedDate)}>
+            onClick={() => {
+              props.setdatefilter(selectedDate);
+              props.setCaloriesFilter(Infinity);
+            }}>
             Filter by date
           </Button>
         </div>
@@ -60,7 +63,10 @@ export const Kalendar = (props) => {
           style={{ width: '250px', marginLeft: '0px' }}
           color="primary"
           variant="contained"
-          onClick={() => props.filterDate('0')}>
+          onClick={() => {
+            props.setdatefilter('0');
+            props.setCaloriesFilter(Infinity);
+          }}>
           Show all dates
         </Button>
       </div>

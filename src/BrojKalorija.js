@@ -31,7 +31,8 @@ export const BrojKalorija = (props) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      props.filterCalories(values.calories);
+      props.setCaloriesFilter(values.calories);
+      props.setdatefilter('0');
     },
   });
 

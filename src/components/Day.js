@@ -13,6 +13,24 @@ export const Day = (props) => {
   // meals.map((meal) => {
   //   return (total = total + meal.calories);
   // });
+  const style2 = {
+    display: 'flex',
+    flexDirection: 'row',
+    border: '3px solid black',
+    paddingLeft: '40px',
+    paddingRight: '40px',
+    height: '80px',
+    width: '400px',
+    margin: 'auto',
+    marginBottom: '0px',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  };
+  if (!visible) {
+    style2.backgroundColor = 'salmon';
+  } else {
+    style2.backgroundColor = '#33E88D';
+  }
 
   return (
     <div
@@ -26,21 +44,7 @@ export const Day = (props) => {
         justifyContent: 'flex-start',
         marginBottom: '20px',
       }}>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          border: '3px solid black',
-          paddingLeft: '40px',
-          paddingRight: '40px',
-          height: '80px',
-          width: '400px',
-          margin: 'auto',
-          marginBottom: '0px',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          backgroundColor: 'salmon',
-        }}>
+      <div style={style2}>
         <div
           style={{
             marginRight: '0px',

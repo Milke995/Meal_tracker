@@ -23,8 +23,12 @@ export const Opcije = (props) => {
 
   return (
     <div style={styles}>
-      <Kalendar filterDate={props.filterDate} />
-      <BrojKalorija filterCalories={props.filterCalories} />
+      <Kalendar
+        filterDate={props.filterDate}
+        setdatefilter={props.setdatefilter}
+        setCaloriesFilter={props.setCaloriesFilter}
+      />
+      <BrojKalorija setCaloriesFilter={props.setCaloriesFilter} setdatefilter={props.setdatefilter} />
       <NewMealButton />
     </div>
   );
