@@ -28,8 +28,12 @@ const AvSt = {
   marginRight: '15px',
 };
 
-export const HomePageHeader = () => {
+export const HomePageHeader = (props) => {
   const history = useHistory();
+
+  const AdminHandler = () => {
+    history.push('/admin');
+  };
 
   const toProfileHandler = () => {
     // window.location.href = 'http://localhost:3000/profile';
@@ -38,6 +42,13 @@ export const HomePageHeader = () => {
 
   return (
     <div style={style}>
+      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+        {props.userInfo && props.userInfo.role === 'admin' ? (
+          <button onClick={() => AdminHandler()}>Manage all users</button>
+        ) : (
+          <div></div>
+        )}
+      </div>
       <HoverText onClick={() => toProfileHandler()}>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'right', alignItems: 'center' }}>
           <div>{fst.auth().currentUser.displayName}</div>

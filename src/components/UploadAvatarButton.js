@@ -44,7 +44,6 @@ export const UploadAvatarButton = () => {
   };
 
   const clickHandler = () => {
-    console.log(formik.values.link);
     fst.auth().currentUser.updateProfile({
       photoURL: formik.values.link,
     });

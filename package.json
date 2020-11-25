@@ -28,6 +28,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "esprima": "^4.0.1",
     "firebase": "^8.0.2",
+    "firebase-admin": "^9.4.1",
     "formik": "^2.2.5",
     "moment": "^2.29.1",
     "react": "^17.0.1",

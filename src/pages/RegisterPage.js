@@ -47,7 +47,15 @@ export const RegisterPage = () => {
         photoURL:
           'https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg',
       });
-      db.collection('users').add({ userID: fst.auth().currentUser.uid, role: 'user' });
+      db.collection('users').add({
+        userID: fst.auth().currentUser.uid,
+        role: 'user',
+        FirstName: FirstName,
+        LastName: LastName,
+        email: email,
+        avatarURL:
+          'https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg',
+      });
     } catch (error) {
       alert(error);
     }
