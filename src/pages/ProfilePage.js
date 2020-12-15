@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import { UploadAvatarButton } from '../components/UploadAvatarButton';
 import fst from '../Firebase';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +25,7 @@ const validationSchema = yup.object({
 });
 
 export const ProfilePage = () => {
+  const history = useHistory();
   const classes = useStyles();
   const formik = useFormik({
     initialValues: {
@@ -40,6 +42,10 @@ export const ProfilePage = () => {
       });
     },
   });
+
+  const backToHomeHandler = () => {
+    history.goBack();
+  };
 
   const styles = {
     textAlign: 'center',
@@ -137,7 +143,7 @@ export const ProfilePage = () => {
         <Button color="primary" variant="contained" type="submit">
           Save Changes
         </Button>
-        <Button color="secondary" variant="contained" type="button" href="http://localhost:3000/home">
+        <Button color="secondary" variant="contained" type="button" onClick={() => backToHomeHandler()}>
           Back to Home
         </Button>
       </form>

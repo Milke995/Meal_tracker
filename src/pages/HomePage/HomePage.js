@@ -28,7 +28,7 @@ export const HomePage = () => {
   if (userInfo === 0) {
     return (
       <div style={{ margin: 'auto', textAlign: 'center', verticalAlign: 'middle', height: '100%' }}>
-        <h1>This accounst has been disabled</h1>
+        <h1>This account has been disabled</h1>
         <button onClick={() => fst.auth().signOut()}>Sign Out</button>
       </div>
     );

@@ -61,7 +61,7 @@ export const User = (props) => {
           height: '40px',
           paddingLeft: '10px',
         }}>
-        {props.user.userID === fst.auth().currentUser.uid ? null : (
+        {props.user.userID === fst.auth().currentUser.uid || props.user.role === 'admin' ? null : (
           <button onClick={() => deleteUser(props.user.userID, setAllUsers)}>Delete user</button>
         )}
       </div>

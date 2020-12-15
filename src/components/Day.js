@@ -8,11 +8,9 @@ export const Day = (props) => {
   const d = new Date(datestring);
   const weekday = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const DayName = weekday[d.getDay()];
+  let text;
+  const dateform = datestring.split('-');
 
-  // let total = 0;
-  // meals.map((meal) => {
-  //   return (total = total + meal.calories);
-  // });
   const style2 = {
     display: 'flex',
     flexDirection: 'row',
@@ -20,7 +18,7 @@ export const Day = (props) => {
     paddingLeft: '40px',
     paddingRight: '40px',
     height: '80px',
-    width: '400px',
+    width: '450px',
     margin: 'auto',
     marginBottom: '0px',
     alignItems: 'center',
@@ -28,8 +26,10 @@ export const Day = (props) => {
   };
   if (!visible) {
     style2.backgroundColor = 'salmon';
+    text = 'Show more';
   } else {
     style2.backgroundColor = '#33E88D';
+    text = 'Show less';
   }
 
   return (
@@ -49,12 +49,12 @@ export const Day = (props) => {
           style={{
             marginRight: '0px',
           }}>
-          {DayName}, {datestring}
+          {DayName}, {dateform[2]}.{dateform[1]}.{dateform[0]}.
         </div>
         <div>Total Calories: {props.total}</div>
         <div>
           <button type="button" onClick={() => setVisible(!visible)}>
-            Show More
+            {text}
           </button>
         </div>
       </div>
@@ -66,7 +66,7 @@ export const Day = (props) => {
                 key={meal.title}
                 style={{
                   backgroundColor: '#F8E390',
-                  width: '402px',
+                  width: '452px',
                   border: '2px solid blue',
                   paddingLeft: '40px',
                   paddingRight: '40px',
